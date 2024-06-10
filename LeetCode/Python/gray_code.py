@@ -24,16 +24,22 @@ class Solution:
     
    
         res = [0,1]
-        def h(i=1):
-            if len(res)==(1<<n):
-                return 
-            N = len(res)
-            res.extend(res[::-1])
-            for j in range(N,len(res)):
-                res[j] = (1<<i)+res[j]
-            h(i+1)
+        # def h(i=1):
+        #     if len(res)==(1<<n):
+        #         return 
+        #     N = len(res)
+        #     res.extend(res[::-1])
+        #     for j in range(N,len(res)):
+        #         res[j] = (1<<i)+res[j]
+        #     h(i+1)
 
-        h()
+        # h()
+        # return res
+
+        for i in range(1,n):
+            N = len(res)
+            for j in range(N-1,-1,-1):
+                res.append((1<<i)+res[j])
         return res
 
         
