@@ -23,8 +23,34 @@ class Solution:
                 l+=1
         l,r = res
         return s[l:r+1] if length!=float('inf') else ""
+    
 
-                
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        table = Counter(t)
+        sable = defaultdict(int)
+        l = 0
+        ans = [-1,-1]
+        length = float('inf')
+        tot = 0
+        for r, v in enumerate(s):
+            if v in table:
+                sable[v]+=1
+                if sable[v]==table[v]:
+                    tot+=1
+            while tot==len(table):
+                if r-l+1<length:
+                    length = r-l+1
+                    ans = [l,r]
+                if s[l] in table:
+                    sable[s[l]]-=1
+                    if sable[s[l]]<table[s[l]]:
+                        tot-=1
+                        # del sable[s[l]]
+                l+=1
+        l,r = ans
+        return "" if length==float('inf') else s[l:r+1]
+            
 
 
 
