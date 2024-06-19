@@ -16,4 +16,22 @@ class Solution:
 
         return ans
 
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        heights.append(-1)
+        ans = 0
+        stk = [-1]
+        for i in range(len(heights)):
+            while stk and heights[stk[-1]]>heights[i]:
+                
+                ind = stk.pop()
+                
+                w = i-stk[-1]-1
+                h = heights[ind]
+                ans = max(ans,w*h)
+            stk.append(i)
+        return ans
+
+
+        
         
