@@ -1,0 +1,40 @@
+start zookeeper 
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+kafka broker start krne ke liye
+kafka-server-start.bat ..\..\config\server.properties
+
+create a topic
+kafka-topics.bat --create --topic my-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3
+
+write to topic
+kafka-console-producer.bat --broker-list localhost:9092 --topic my-topic
+
+read from topic
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+
+
+
+same thing as above 
+
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+kafka-server-start.bat ..\..\config\server.properties
+
+kafka-topics.bat --create --topic foods --bootstrap-server localhost:9092 --replication-factor 1 --partitions 4
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic foods --property "key.separator=-" --property "parse.key=true"
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic foods --from-beginning -property "key.separator=-" --property "print.key=false"
+
+
+
+to list all topics
+kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+to list all consumer groups
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+
+to see a topic description
+kafka-topics.bat --describe --topic topic-name --bootstrap-server localhost:9092
+

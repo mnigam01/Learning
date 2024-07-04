@@ -1,0 +1,2 @@
+add junit jupter api dependencey
+also u can add junit parametrized dependency
